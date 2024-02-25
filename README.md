@@ -1,5 +1,7 @@
 # movies-explorer-full
 
+Макет light-3
+
 Адрес репозитория: https://github.com/pa-sh-tet/movies-explorer-full
 
 ## Ссылки на проект
