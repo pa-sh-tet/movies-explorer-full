@@ -1,0 +1,57 @@
+.filter {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  border-left: 1px solid rgba(203, 203, 203, 1);
+}
+
+.filter__button {
+  appearance: none;
+  width: 36px;
+  height: 20px;
+  border: none;
+  margin: 10px 15px 10px 30px;
+  background-color: transparent;
+  background-image: url(../../../images/smalltumboff.svg);
+  background-size: cover;
+  transition: .4s ease-in-out;
+  cursor: pointer;
+}
+
+.filter__button:checked {
+  background-image: url(../../../images/smalltumb.svg);
+}
+
+.filter__text {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+  margin: 11px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .filter__button {
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .filter {
+    position: absolute;
+    top: 107px;
+    border: none;
+    left:50%;
+    transform:translate(-56%);
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .filter__text {
+    font-size: 11px;
+  }
+
+  .filter__button {
+    margin-right: 13px;
+  }
+}
