@@ -1,9 +1,26 @@
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    setIsValid(validateForm());
+  }, [email, password]);
+
+  function validateForm() {
+    const isEmailValid = email.includes("@") && email.includes(".");
+    const isPasswordValid = password.length >= 2 && password.length <= 40;
+
+    setEmailError(isEmailValid ? "" : "Введите корректный email адрес");
+    setPasswordError(isPasswordValid ? "" : "Пароль должен содержать от 2 до 40 символов");
+
+    return isEmailValid && isPasswordValid;
+  }
 
   function handleEmailChange(evt) {
     setEmail(evt.target.value);
@@ -15,7 +32,9 @@ export default function Login({ onLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin(email, password)
+    if (isValid) {
+      onLogin(email, password);
+    }
   }
 
   return (
@@ -37,7 +56,7 @@ export default function Login({ onLogin }) {
               onChange={handleEmailChange}
               required
             />
-            <span className='login__section-error'>Что-то пошло не так...</span>
+            <span className='login__section-error'>{emailError}</span>
           </div>
           <div className="login__section">
             <h3 className='login__section-title'>Пароль</h3>
@@ -52,9 +71,9 @@ export default function Login({ onLogin }) {
               onChange={handlePasswordChange}
               required
             />
-            <span className='login__section-error'>Что-то пошло не так...</span>
+            <span className='login__section-error'>{passwordError}</span>
           </div>
-          <button className='login__submit-button'>Войти</button>
+          <button className={`login__submit-button ${!isValid && 'login__submit-button_disabled'}`} disabled={!isValid}>Войти</button>
           <p className='login__register-text'>Ещё не зарегистрированы?<Link to='/signup' className='login__register-link link'>Регистрация</Link></p>
         </form>
       </div>
