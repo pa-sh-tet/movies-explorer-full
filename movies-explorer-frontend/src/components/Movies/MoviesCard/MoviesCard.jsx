@@ -17,14 +17,20 @@ export default function MoviesCard({
     }
   }, [savedMovies]);
 
-  function handleCheckboxChange () {
-    setIsChecked(!isChecked);
-    if (!isChecked) {
-      onMovieSave(movie);
-    } else {
-      onMovieDelete(savedMovies.filter((m) => m.movieId === movie.id)[0]);
+  function handleCheckboxChange() {
+    try {
+      if (!isChecked) {
+        const result = onMovieSave(movie);
+        setIsChecked(true);
+        return result;
+      } else {
+        return onMovieDelete(savedMovies.filter((m) => m.movieId === movie.id)[0]);
+      }
+    } catch (error) {
+      console.error('Произошла ошибка:', error);
+      return Promise.reject(error);
     }
-  };
+  }  
 
   function formatDuration(duration) {
     if (duration < 60) {

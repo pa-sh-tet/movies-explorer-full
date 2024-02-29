@@ -8,7 +8,7 @@ export default function Profile({ signOut, onUpdateUser }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isNameValid, setIsNameValid] = useState(true);
   const [isEmailValid, setIsEmailValid] = useState(true);
-  const [isValid, setIsValid] = useState(false); // Добавлено для активации кнопки "Сохранить"
+  const [isValid, setIsValid] = useState(false);
   const currentUser = useContext(CurrentUserContext);
 
   useEffect(() => {
@@ -17,8 +17,13 @@ export default function Profile({ signOut, onUpdateUser }) {
   }, [currentUser]);
 
   useEffect(() => {
-    setIsValid(isNameValid && isEmailValid); // Проверяем валидность имени и email для активации кнопки "Сохранить"
+    setIsValid(isNameValid && isEmailValid);
   }, [isNameValid, isEmailValid]);
+
+  useEffect(() => {
+    const isDataChanged = name !== currentUser.name || email !== currentUser.email;
+    setIsValid(isDataChanged && isNameValid && isEmailValid);
+  }, [name, email, currentUser.name, currentUser.email, isNameValid, isEmailValid]);
 
   function handleNameChange(e) {
     const value = e.target.value;

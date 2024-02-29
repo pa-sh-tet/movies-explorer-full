@@ -33,9 +33,7 @@ function App() {
   const [saveMovies, setSaveMovies] = useState([]);
   const [isShortFilmChecked, setIsShortFilmChecked] = useState(false);
   const [isShortSaveMoviesChecked, setIsShortSaveMoviesChecked] = useState(false);
-
   const [isLoading, setIsLoading] = useState(false);
-  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -113,10 +111,12 @@ function App() {
         if (res) {
           setIsSuccess(true);
           setIsInfoPopupOpen(true);
-          navigate("/signin", {replace: true});   
+          navigate("/movies", {replace: true});
+          localStorage.setItem('jwt', res.token);
+          setIsLoggedIn(true);
         } else {
           setIsSuccess(false);
-          setIsInfoPopupOpen(true);    
+          setIsInfoPopupOpen(true);
         }
       })
       .catch((error) => {
@@ -130,10 +130,10 @@ function App() {
     auth.authorize(email, password)
       .then((res) => {
         localStorage.setItem('jwt', res.token);
-        setIsLoggedIn(true);        
+        setIsLoggedIn(true); 
       })
       .then(() => {
-        navigate("/");
+        navigate("/movies");
       })
       .catch((err) => {
         console.log(err);
@@ -155,9 +155,13 @@ function App() {
     mainApi.patchUserInfo(newUserInfo)
       .then((newData) => {
         setCurrentUser(newData);
+        setIsSuccess(true);
+        setIsInfoPopupOpen(true);
       })
       .catch((error) => {
         console.log(error);
+        setIsSuccess(false);
+        setIsInfoPopupOpen(true);
       });
   }
 
