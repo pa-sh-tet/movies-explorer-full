@@ -111,9 +111,7 @@ function App() {
         if (res) {
           setIsSuccess(true);
           setIsInfoPopupOpen(true);
-          navigate("/movies", {replace: true});
-          localStorage.setItem('jwt', res.token);
-          setIsLoggedIn(true);
+          handleLogin(email, password)
         } else {
           setIsSuccess(false);
           setIsInfoPopupOpen(true);
