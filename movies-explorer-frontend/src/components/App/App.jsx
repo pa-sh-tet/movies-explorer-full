@@ -259,11 +259,13 @@ function App() {
                   element={SavedMovies}
                   isLoggedIn={isLoggedIn}
                   saveMovies={saveMovies}
+                  setSaveMovies={setSaveMovies}
                   onSearchMovies={handleSearchSaveMovies}
                   searchMovies={searchSaveMovies}
                   setSearchMovies={setSearchSaveMovies}
                   onMovieDelete={handleMovieDelete}
                   isFind={isFind}
+                  setIsFind={setIsFind}
                   isLoading={isLoading}
                   isShortSaveMoviesChecked={isShortSaveMoviesChecked}
                   setIsShortSaveMoviesChecked={setIsShortSaveMoviesChecked}

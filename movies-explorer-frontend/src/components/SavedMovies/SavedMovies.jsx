@@ -1,27 +1,58 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import MoviesCard from '../Movies/MoviesCard/MoviesCard';
 import Preloader from '../Movies/Preloader/Preloader';
+import { mainApi } from '../../utils/MainApi';
 
 export default function SavedMovies({
   saveMovies,
+  setSaveMovies,
   onSearchMovies,
   searchMovies,
   setSearchMovies,
   onMovieDelete,
   isLoading,
   isFind,
+  setIsFind,
   isShortSaveMoviesChecked,
   setIsShortSaveMoviesChecked
 }) {
-  // const [moviesToList, setMoviesToList] = useState([]);
+  const location = useLocation();
 
-  // useEffect(() => {
-  //   const filteredMovies = isShortSaveMoviesChecked
-  //     ? saveMovies.filter(movie => movie.duration <= 40)
-  //     : saveMovies;
-  //   setMoviesToList(filteredMovies);
-  // }, [isShortSaveMoviesChecked, saveMovies]);
+  useEffect(() => {
+    mainApi.getSaveMovies()
+      .then(res => {
+        setSaveMovies(res);
+        setIsFind(true);
+      })
+      .catch(error => {
+        console.error('Ошибка при загрузке сохраненных фильмов:', error);
+      });
+  }, [location, setSaveMovies]);
+
+  useEffect(() => {
+    setIsShortSaveMoviesChecked(false);
+    setSearchMovies('');
+  }, [location, setSearchMovies, setIsShortSaveMoviesChecked]);
+
+  useEffect(() => {
+    const filteredMovies = isShortSaveMoviesChecked
+      ? saveMovies.filter(movie => movie.duration <= 40)
+      : saveMovies;
+    setSaveMovies(filteredMovies);
+  }, [saveMovies, isShortSaveMoviesChecked, setSaveMovies]);
+
+  useEffect(() => {
+    mainApi.getSaveMovies()
+      .then(res => {
+        setSaveMovies(res);
+        setIsFind(true);
+      })
+      .catch(error => {
+        console.error('Ошибка при загрузке сохраненных фильмов:', error);
+      });
+  }, [isShortSaveMoviesChecked, setSaveMovies]);
 
   return (
     <div className='saved-movies'>
