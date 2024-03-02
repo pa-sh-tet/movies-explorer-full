@@ -14,14 +14,14 @@ export default function SavedMovies({
   isShortSaveMoviesChecked,
   setIsShortSaveMoviesChecked
 }) {
-  const [moviesToList, setMoviesToList] = useState([]);
+  // const [moviesToList, setMoviesToList] = useState([]);
 
-  useEffect(() => {
-    const filteredMovies = isShortSaveMoviesChecked
-      ? saveMovies.filter(movie => movie.duration <= 40)
-      : saveMovies;
-    setMoviesToList(filteredMovies);
-  }, [isShortSaveMoviesChecked, saveMovies]);
+  // useEffect(() => {
+  //   const filteredMovies = isShortSaveMoviesChecked
+  //     ? saveMovies.filter(movie => movie.duration <= 40)
+  //     : saveMovies;
+  //   setMoviesToList(filteredMovies);
+  // }, [isShortSaveMoviesChecked, saveMovies]);
 
   return (
     <div className='saved-movies'>
@@ -33,7 +33,7 @@ export default function SavedMovies({
         setIsShortFilmChecked={setIsShortSaveMoviesChecked}
       />
       <ul className="saved-movies__container">
-        {moviesToList.map((movie) => (
+        {saveMovies.map((movie) => (
           <MoviesCard
             key={movie.id}
             onMovieDelete={onMovieDelete}

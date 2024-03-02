@@ -44,7 +44,11 @@
   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.09);
 }
 
-.card__save-button:checked {
+/* .card__save-button:checked {
+  background-color: rgba(43, 224, 128, 1);
+} */
+
+.card__save-button_active {
   background-color: rgba(43, 224, 128, 1);
 }
 

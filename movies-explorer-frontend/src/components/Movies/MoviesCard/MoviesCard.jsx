@@ -1,6 +1,6 @@
-import {useLocation} from 'react-router-dom';
-import { movies_api_url } from '../../../utils/utils.js';
 import React, { useState, useEffect } from 'react';
+import { movies_api_url } from '../../../utils/utils.js';
+import { useLocation } from 'react-router-dom';
 
 export default function MoviesCard({
   onMovieSave,
@@ -9,28 +9,30 @@ export default function MoviesCard({
   movie
 }) {
   const location = useLocation();
-  const [isChecked, setIsChecked] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     if (location.pathname === '/movies') {
-      setIsChecked(savedMovies.some(element => movie.id === element.movieId));      
+      setIsActive(savedMovies.some(element => movie.id === element.movieId));
     }
-  }, [savedMovies]);
+  }, [savedMovies, movie.id, location.pathname]);
 
-  function handleCheckboxChange() {
-    try {
-      if (!isChecked) {
-        const result = onMovieSave(movie);
-        setIsChecked(true);
-        return result;
-      } else {
-        return onMovieDelete(savedMovies.filter((m) => m.movieId === movie.id)[0]);
-      }
-    } catch (error) {
-      console.error('Произошла ошибка:', error);
-      return Promise.reject(error);
+  const handleButtonClick = () => {
+    if (!isActive) {
+      Promise.resolve(onMovieSave(movie))
+        .catch(error => {
+          console.error('Произошла ошибка при сохранении фильма:', error);
+          setIsActive(false);
+        });
+    } else {
+      Promise.resolve(onMovieDelete(savedMovies.find(m => m.movieId === movie.id)))
+        .catch(error => {
+          console.error('Произошла ошибка при удалении фильма:', error);
+          setIsActive(true);
+        });
     }
-  }  
+  };
+  
 
   function formatDuration(duration) {
     if (duration < 60) {
@@ -61,12 +63,10 @@ export default function MoviesCard({
           {movie.nameRU}
         </h3>
         {location.pathname === '/movies' ? (
-          <input
-            type="checkbox"
-            className='card__save-button link' 
-            checked={isChecked}
-            onChange={handleCheckboxChange}
-          />
+          <button
+            className={`card__save-button link ${isActive ? 'card__save-button_active' : ''}`}
+            onClick={handleButtonClick}
+          ></button>
         ) : (
           <button onClick={() => onMovieDelete(movie)} className='card__delete-button link'></button>
         )}
