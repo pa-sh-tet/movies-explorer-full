@@ -43,17 +43,6 @@ export default function SavedMovies({
     setSearchMovies('');
   }, [location, setSearchMovies, setIsShortSaveMoviesChecked]);
 
-  // useEffect(() => {
-  //   mainApi.getSaveMovies()
-  //     .then(res => {
-  //       setSaveMovies(res);
-  //       setIsFind(true);
-  //     })
-  //     .catch(error => {
-  //       console.error('Ошибка при загрузке сохраненных фильмов:', error);
-  //     });
-  // }, [, setSaveMovies]);
-
   return (
     <div className='saved-movies'>
       <SearchForm 

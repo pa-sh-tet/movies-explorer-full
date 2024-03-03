@@ -42,8 +42,6 @@ export default function Movies({
         movies={movies}
         isLoading={isLoading}
         setSaveMovies={setSaveMovies}
-        // setIsShortFilmChecked={setIsShortFilmChecked}
-        // isShortFilmChecked={isShortFilmChecked}
       />
     </div>
   );

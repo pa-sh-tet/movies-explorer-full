@@ -22,7 +22,6 @@ export default function FilterCheckbox({ isShortFilmChecked, setIsShortFilmCheck
     }
   }
 
-
   return (
     <div className='filter'>
       <input type="checkbox"

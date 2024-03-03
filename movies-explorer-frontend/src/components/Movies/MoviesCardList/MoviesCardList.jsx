@@ -13,7 +13,6 @@ export default function MoviesCardList({
   savedMovies,
   isLoading,
   setSaveMovies
-  // isShortFilmChecked
 }) {
   const [moviesToLoad, setMoviesToLoad] = useState(0);
   const [extraMoviesToLoad, setExtraMoviesToLoad] = useState(0);
@@ -25,7 +24,6 @@ export default function MoviesCardList({
     mainApi.getSaveMovies()
       .then(res => {
         setSaveMovies(res);
-        // setIsFind(true);
       })
       .catch(error => {
         console.error('Ошибка при загрузке сохраненных фильмов:', error);
@@ -43,23 +41,6 @@ export default function MoviesCardList({
   }, [localStorage.getItem('lastFoundMovies'), localStorage.getItem('lastSearchShortFilmChecked'), moviesToLoad]);
 
   let resizeTimeout = null;
-  // useEffect(() => {
-  //   if (!moviesToList.length) {
-  //     const initialMovies = movies.slice(0, moviesToLoad);
-  //     setMoviesToList(initialMovies);
-  //     setIsActivePreloader(movies.length > moviesToLoad);
-  //   } else {
-  //     const remainingMovies = movies.slice(moviesToList.length, moviesToList.length + extraMoviesToLoad);
-  //     setMoviesToList(prevMovies => [...prevMovies, ...remainingMovies]);
-  //     setIsActivePreloader(moviesToList.length < movies.length);
-  //   }
-  // }, [movies, moviesToList, moviesToLoad, extraMoviesToLoad]);
-  
-  // const handlePreloaderButton = () => {
-  //   const remainingMovies = movies.slice(moviesToList.length, moviesToList.length + extraMoviesToLoad);
-  //   setMoviesToList(prevMovies => [...prevMovies, ...remainingMovies]);
-  //   setIsActivePreloader(moviesToList.length < movies.length);
-  // };
   
   useEffect(() => {
     updateRows();
