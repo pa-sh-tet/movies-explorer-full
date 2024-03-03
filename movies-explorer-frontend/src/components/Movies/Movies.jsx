@@ -14,6 +14,7 @@ export default function Movies({
   searchMovies,
   setIsShortFilmChecked,
   isShortFilmChecked,
+  setSaveMovies
 }) {
   useEffect(() => {
     const lastSearch = localStorage.getItem('lastSearch');
@@ -40,6 +41,7 @@ export default function Movies({
         onMovieDelete={onMovieDelete}
         movies={movies}
         isLoading={isLoading}
+        setSaveMovies={setSaveMovies}
         // setIsShortFilmChecked={setIsShortFilmChecked}
         // isShortFilmChecked={isShortFilmChecked}
       />

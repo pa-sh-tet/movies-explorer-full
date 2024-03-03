@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
+import { mainApi } from '../../../utils/MainApi';
+import { useLocation } from 'react-router-dom';
+
 
 export default function MoviesCardList({
   isFind,
@@ -9,13 +12,26 @@ export default function MoviesCardList({
   movies,
   savedMovies,
   isLoading,
+  setSaveMovies
   // isShortFilmChecked
 }) {
   const [moviesToLoad, setMoviesToLoad] = useState(0);
   const [extraMoviesToLoad, setExtraMoviesToLoad] = useState(0);
   const [isActivePreloader, setIsActivePreloader] = useState(false);
   const [moviesToList, setMoviesToList] = useState([]);
+  const location = useLocation();
 
+  useEffect(() => {
+    mainApi.getSaveMovies()
+      .then(res => {
+        setSaveMovies(res);
+        // setIsFind(true);
+      })
+      .catch(error => {
+        console.error('Ошибка при загрузке сохраненных фильмов:', error);
+      });
+  }, [location, setSaveMovies]);
+  
   useEffect(() => {
     const lastFoundMovies = JSON.parse(localStorage.getItem('lastFoundMovies'));
     const lastSearchShortFilmChecked = JSON.parse(localStorage.getItem('lastSearchShortFilmChecked'));
@@ -27,7 +43,24 @@ export default function MoviesCardList({
   }, [localStorage.getItem('lastFoundMovies'), localStorage.getItem('lastSearchShortFilmChecked'), moviesToLoad]);
 
   let resizeTimeout = null;
-
+  // useEffect(() => {
+  //   if (!moviesToList.length) {
+  //     const initialMovies = movies.slice(0, moviesToLoad);
+  //     setMoviesToList(initialMovies);
+  //     setIsActivePreloader(movies.length > moviesToLoad);
+  //   } else {
+  //     const remainingMovies = movies.slice(moviesToList.length, moviesToList.length + extraMoviesToLoad);
+  //     setMoviesToList(prevMovies => [...prevMovies, ...remainingMovies]);
+  //     setIsActivePreloader(moviesToList.length < movies.length);
+  //   }
+  // }, [movies, moviesToList, moviesToLoad, extraMoviesToLoad]);
+  
+  // const handlePreloaderButton = () => {
+  //   const remainingMovies = movies.slice(moviesToList.length, moviesToList.length + extraMoviesToLoad);
+  //   setMoviesToList(prevMovies => [...prevMovies, ...remainingMovies]);
+  //   setIsActivePreloader(moviesToList.length < movies.length);
+  // };
+  
   useEffect(() => {
     updateRows();
     window.addEventListener('resize', handleResize);

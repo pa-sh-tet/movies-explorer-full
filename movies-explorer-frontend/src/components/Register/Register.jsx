@@ -16,7 +16,7 @@ export default function Register({ onRegister }) {
 
   function validateForm() {
     const isNameValid = name.length >= 2 && name.length <= 40;
-    const isEmailValid = email.includes("@") && email.includes(".");
+    const isEmailValid = validateEmail(email);
     const isPasswordValid = password.length >= 2 && password.length <= 40;
 
     setNameError(isNameValid ? "" : "Имя должно содержать от 2 до 40 символов");
@@ -24,6 +24,11 @@ export default function Register({ onRegister }) {
     setPasswordError(isPasswordValid ? "" : "Пароль должен содержать от 2 до 40 символов");
 
     return isNameValid && isEmailValid && isPasswordValid;
+  }
+
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   }
 
   function handleNameChange(evt) {

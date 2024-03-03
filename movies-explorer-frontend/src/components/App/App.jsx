@@ -21,13 +21,10 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isInfoPopupOpen, setIsInfoPopupOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  
   const [searchMovies, setSearchMovies] = useState('');
   const [searchSaveMovies, setSearchSaveMovies] = useState('');
   const [movies, setMovies] = useState([]);
-
   const [isFind, setIsFind] = useState(true);
-
   const [currentUser, setCurrentUser] = useState({});
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [saveMovies, setSaveMovies] = useState([]);
@@ -241,6 +238,7 @@ function App() {
                   savedMovies={saveMovies}
                   setIsShortFilmChecked={setIsShortFilmChecked}
                   isShortFilmChecked={isShortFilmChecked}
+                  setSaveMovies={setSaveMovies}
                 />
                 <ProtectedRouteElement 
                   element={Footer}

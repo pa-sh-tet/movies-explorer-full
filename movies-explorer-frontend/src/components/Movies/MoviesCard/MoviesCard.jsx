@@ -15,7 +15,7 @@ export default function MoviesCard({
     if (location.pathname === '/movies') {
       setIsActive(savedMovies.some(element => movie.id === element.movieId));
     }
-  }, [savedMovies, movie.id, location.pathname]);
+  }, [savedMovies, movie.id, location]);
 
   const handleButtonClick = () => {
     if (!isActive) {
@@ -32,7 +32,6 @@ export default function MoviesCard({
         });
     }
   };
-  
 
   function formatDuration(duration) {
     if (duration < 60) {

@@ -21,22 +21,6 @@ export default function SavedMovies({
   const location = useLocation();
 
   useEffect(() => {
-    mainApi.getSaveMovies()
-      .then(res => {
-        setSaveMovies(res);
-        setIsFind(true);
-      })
-      .catch(error => {
-        console.error('Ошибка при загрузке сохраненных фильмов:', error);
-      });
-  }, [location, setSaveMovies]);
-
-  useEffect(() => {
-    setIsShortSaveMoviesChecked(false);
-    setSearchMovies('');
-  }, [location, setSearchMovies, setIsShortSaveMoviesChecked]);
-
-  useEffect(() => {
     const filteredMovies = isShortSaveMoviesChecked
       ? saveMovies.filter(movie => movie.duration <= 40)
       : saveMovies;
@@ -52,7 +36,23 @@ export default function SavedMovies({
       .catch(error => {
         console.error('Ошибка при загрузке сохраненных фильмов:', error);
       });
-  }, [isShortSaveMoviesChecked, setSaveMovies]);
+  }, [location, isShortSaveMoviesChecked, setSaveMovies]);
+
+  useEffect(() => {
+    setIsShortSaveMoviesChecked(false);
+    setSearchMovies('');
+  }, [location, setSearchMovies, setIsShortSaveMoviesChecked]);
+
+  // useEffect(() => {
+  //   mainApi.getSaveMovies()
+  //     .then(res => {
+  //       setSaveMovies(res);
+  //       setIsFind(true);
+  //     })
+  //     .catch(error => {
+  //       console.error('Ошибка при загрузке сохраненных фильмов:', error);
+  //     });
+  // }, [, setSaveMovies]);
 
   return (
     <div className='saved-movies'>
