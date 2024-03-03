@@ -1,0 +1,37 @@
+.nav-tab {
+  height: 66px;
+  background-color: rgba(245, 245, 245, 1);
+  display: flex;
+  justify-content: center;
+  transition: .2s ease;
+}
+
+.nav-tab__links {
+  margin: 24px 0;
+  transition: .2s ease;
+}
+
+.nav-tab__link {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  color: rgba(0, 0, 0, 1);
+  margin-right: 40px;
+  transition: .2s ease;
+}
+
+.nav-tab__link:last-child {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 320px) {
+  .nav-tab__links {
+    margin: 25px 0;
+  }
+
+  .nav-tab__link {
+    margin-right: 24px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
