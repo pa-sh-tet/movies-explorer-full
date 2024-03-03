@@ -8,17 +8,15 @@ export default function AboutMe () {
       <h3 className='about-me__title'>Студент</h3>
       <div className='about-me__main'>
         <div className='about-me__description'>
-          <h2 className='about-me__description-title'>Виталий</h2>
+          <h2 className='about-me__description-title'>Павел</h2>
           <h3 className='about-me__description-mark'>
-            Фронтенд-разработчик, 30 лет
+            Фронтенд-разработчик, 19 лет
           </h3>
           <p className='about-me__description-text'>
-            Я родился и живу в Саратове, 
-            закончил факультет экономики СГУ. У меня есть жена и дочь. Я 
-            люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал 
-            кодить. С 2015 года работал в компании «СКБ Контур». После того, 
-            как прошёл курс по веб-разработке, начал заниматься 
-            фриланс-заказами и ушёл с постоянной работы.
+            Я родился в Тольятти, в 18 лет поступил в Казань и теперь живу здесь.
+            Учусь по программе "Математическое обеспечение и администрирование информационных систем".
+            13 лет занимаюсь баскетболом, играю за сборную команду университета.
+            Обладаю хорошим знанием английского на уровне B2.
           </p>
           <Link className='about-me__link link' target='_blank' to='https://github.com/pa-sh-tet'>
             Github
