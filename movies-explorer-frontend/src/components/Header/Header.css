@@ -1,0 +1,86 @@
+.header {
+  height: 74px;
+  display: flex;
+  flex-direction: row;
+  padding: 0 70px;
+  background-color: rgba(250, 250, 250, 1);
+  transition: .2s ease;
+}
+
+.header__main {
+  background-color: rgba(221, 222, 227, 1);
+}
+
+.header__logo {
+  display: block;
+  height: 38px;
+  min-width: 38px;
+  background-image: url(../../images/header__logo.svg);
+  background-size: cover;
+  transition: .2s ease;
+  margin: auto 45px auto 0;
+}
+
+.header__buttons {
+  display: flex;
+  height: 32px;
+  margin: auto 0 auto auto;
+  transition: .2s ease;
+}
+
+.header__auth {
+  width: 77px;
+  height: 16px;
+  margin: 8px 30px 8px 0;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 1);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  transition: .2s ease;
+}
+
+.header__login {
+  text-decoration: none;
+  background-color: rgba(52, 86, 243, 1);
+  color: rgba(255, 255, 255, 1);
+  width: 76px;
+  height: 32px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: 0px;
+  text-align: center;
+  transition: .2s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    padding: 0 14px;
+  }
+
+  .header__buttons {
+    height: 26px;
+  }
+
+  .header__auth {
+    font-size: 10px;
+    line-height: 16px;
+    margin: 5px 14px 5px 0;
+    width: 64px;
+  }
+
+  .header__login {
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+    line-height: 26px;
+  }
+}

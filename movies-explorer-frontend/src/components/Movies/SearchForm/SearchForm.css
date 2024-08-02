@@ -1,0 +1,122 @@
+.search {
+  display: flex;
+  height: 212px;
+  border-bottom: 1px solid rgba(232, 232, 232, 1);
+  transition: .3s ease-in-out;
+}
+
+.search__container {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  width: 1140px;
+  margin: 70px auto;
+  padding: 16px 30px 16px 19px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 9px;
+  box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.1);
+  transition: .3s ease-in-out;
+}
+
+.search__logo {
+  display: block;
+  min-width: 13px;
+  height: 13px;
+  margin: 13px 18px 13px 11px;
+  background-image: url(../../../images/search-icon.svg);
+  background-size: cover;
+  transition: .3s ease-in-out;
+}
+
+.search__input {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  width: 70%;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  margin: 7px 0 0;
+  padding: 0 0 2px;
+  transition: .3s ease-in-out;
+}
+
+.search__input:focus {
+  border-bottom: 1px solid rgba(52, 86, 243, 1);
+  outline: none;
+}
+
+.search__button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: rgba(52, 86, 243, 1);
+  border: none;
+  z-index: 0;
+  margin: 3px 17px 3px 45px;
+  transition: .3s ease;
+}
+
+.search__button:hover {
+  cursor: pointer;
+  opacity: .8;
+}
+
+.search__button-image {
+  background-image: url(../../../images/search_button.svg);
+  background-size: cover;
+  z-index: 1;
+  width: 22px;
+  height: 22px;
+  transition: .3s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .search {
+    height: 262px;
+  }
+
+  .search__logo {
+    margin: 13px 18px 13px 12px;
+  }
+
+  .search__container {
+    width: 708px;
+    padding: 16px 20px 16px 19px;
+    margin: 80px auto 100px;
+  }
+
+  .search__button {
+    margin-right: 18px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .search__container {
+    position: relative;
+    justify-content: space-between;
+  }
+
+  .search__logo {
+    display: none;
+  }
+
+  .search__input {
+    font-size: 14px;  
+  }
+
+  .search__button {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .search__container {
+    position: relative;
+  }
+
+  .search__button {
+    margin-right: 0;
+  }
+}
